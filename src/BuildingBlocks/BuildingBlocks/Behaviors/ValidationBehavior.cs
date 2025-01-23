@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BuildingBlocks.Behaviors
 {
+    //sadece command içeren crud işlemlerini kapsıyor yani delete update create gibi
     public class ValidationBehavior<TRequest, TResponse>
          (IEnumerable<IValidator<TRequest>> validators) 
         : IPipelineBehavior<TRequest, TResponse>
