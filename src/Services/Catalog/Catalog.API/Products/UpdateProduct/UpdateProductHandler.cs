@@ -19,11 +19,10 @@ namespace Catalog.API.Products.UpdateProduct
                 .GreaterThan(0).WithMessage("Prica must be greater than 0");
         }
     }
-    internal class UpdateProductCommandHandler(IDocumentSession documentSession, ILogger<UpdateProductCommandHandler> logger) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
+    internal class UpdateProductCommandHandler(IDocumentSession documentSession) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("UpdateProduct {@Command}", command);
             var product = await documentSession.LoadAsync<Product>(command.Id, cancellationToken);
             if (product is null)
             {
